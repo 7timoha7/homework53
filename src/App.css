@@ -1,38 +1,54 @@
-.App {
-  text-align: center;
+.form-box {
+    padding: 20px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background: linear-gradient(45deg, rgb(255, 255, 255), rgb(57, 165, 160));
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input {
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    margin-right: 100px;
+    width: 400px;
+    font-size: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn-add {
+    background: linear-gradient(45deg, rgb(0, 0, 0), rgb(0, 255, 241));
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.btn-add:active {
+    background: linear-gradient(45deg, rgb(0, 0, 0), rgb(31, 150, 145));
 }
 
-.App-link {
-  color: #61dafb;
+.btn-delete{
+    background: linear-gradient(45deg, rgb(255, 255, 255), rgb(0, 70, 60));
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+    background: #726c6c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.task {
+    display: flex;
+    width: 600px;
+    justify-content: space-between;
+    margin-top: 30px;
+    background: linear-gradient(45deg, rgb(255, 255, 255), rgb(47, 137, 133));
+    padding: 15px;
+    border-radius: 10px;
+    border: 3px solid black;
 }
