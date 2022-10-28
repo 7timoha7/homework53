@@ -6,19 +6,39 @@ import Task from "./Task/Task";
 function App() {
 
   const [task, setTask] = useState([
-    {inputUser: 'Wake up, wash, do exercises.', id: 'd1'},
-    {inputUser: 'Cook breakfast.', id: 'd2'},
-    {inputUser: 'Clean up the house.', id: 'd3'}
+    {inputUser: 'Wake up, wash, do exercises.', id: 'd1', style: 'none'},
+    {inputUser: 'Cook breakfast.', id: 'd2', style: 'none'},
+    {inputUser: 'Clean up the house.', id: 'd3', style: 'none'}
   ]);
 
   const [currentTask, setCurrentTask] = useState([
-      {inputUser: 'Add new task'}
+      {inputUser: 'Add new task',  style: 'none'}
     ]
   )
 
+  const onChangeCheckbox = (index:string) => {
+    const tasksCopy = [...task];
+    tasksCopy.map(task => {
+      if (task.id === index) {
+        if (task.style === 'none'){
+          task.style = 'block';
+        } else {
+          task.style = 'none';
+        }
+      }
+      return tasksCopy;
+    })
+    setTask(tasksCopy);
+  }
+
   const firstThreeTask = task.map((task) => {
     return (
-      <Task inputUser={task.inputUser} key={task.id} onClickDelete={() => deleteTask(task.id)}/>
+      <Task inputUser={task.inputUser}
+            key={task.id}
+            onClickDelete={() => deleteTask(task.id)}
+            onChangeCheckbox={() => onChangeCheckbox(task.id)}
+            style={task.style}
+      />
     )
   });
 
@@ -39,10 +59,11 @@ function App() {
   };
 
   const newTask = () => {
-    if (currentTask[0].inputUser !== 'Add new task'){
+    if (currentTask[0].inputUser !== 'Add new task') {
       const newTask = {
         inputUser: currentTask[0].inputUser,
-        id: String(Math.floor(Math.random() * (10000 - 5 + 1)) + 5)
+        id: String(Math.floor(Math.random() * (10000 - 5 + 1)) + 5),
+        style: 'none'
       }
       const tasksCopy = [...task, newTask];
       setTask(tasksCopy);
