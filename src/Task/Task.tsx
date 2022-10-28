@@ -13,7 +13,7 @@ const Task: React.FC<TaskProps> = props => {
       <div className='task'>
         <p>{props.inputUser}</p>
         <span style={{display: props.style}}>Done</span>
-        <input type="checkbox" onChange={props.onChangeCheckbox}/>
+        <input className='checkbox' type="checkbox" onChange={props.onChangeCheckbox}/>
         <button className='btn-delete' onClick={props.onClickDelete}>Delete</button>
       </div>
     </div>
