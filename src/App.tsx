@@ -6,13 +6,13 @@ import Task from "./Task/Task";
 function App() {
 
   const [task, setTask] = useState([
-    {inputUser: 'privet', id: 'd1'},
-    {inputUser: 'kak', id: 'd2'},
-    {inputUser: 'dela', id: 'd3'}
+    {inputUser: 'Wake up, wash, do exercises.', id: 'd1'},
+    {inputUser: 'Cook breakfast.', id: 'd2'},
+    {inputUser: 'Clean up the house.', id: 'd3'}
   ]);
 
   const [currentTask, setCurrentTask] = useState([
-      {inputUser: 'Add new task', id: ''}
+      {inputUser: 'Add new task'}
     ]
   )
 
@@ -30,28 +30,27 @@ function App() {
       }
     }
     setTask(newTasks);
-    console.log(id)
   }
 
   const changeTask = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const randomId = String(Math.floor(Math.random() * (10000 - 5 + 1)) + 5);
-    const task = {...currentTask[0]};
-    task.inputUser = event.target.value;
-    task.id = randomId
     const currentTaskCopy = [...currentTask];
-    currentTaskCopy[0] = task;
+    currentTaskCopy[0].inputUser = event.target.value;
     setCurrentTask(currentTaskCopy);
-    console.log(currentTaskCopy);
   };
 
   const newTask = () => {
-    const copyTasks = [...task, currentTask[0]];
-    setTask(copyTasks);
+    if (currentTask[0].inputUser !== 'Add new task'){
+      const newTask = {
+        inputUser: currentTask[0].inputUser,
+        id: String(Math.floor(Math.random() * (10000 - 5 + 1)) + 5)
+      }
+      const tasksCopy = [...task, newTask];
+      setTask(tasksCopy);
+    }
   }
 
   return (
     <div className="App">
-
       <AddTaskForm onClick={newTask} currentTask={currentTask[0].inputUser}
                    onTaskChange={event => changeTask(event)}/>
       {firstThreeTask}
